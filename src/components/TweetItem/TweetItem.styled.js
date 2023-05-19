@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Tweet = styled.li`
   position: relative;
+  padding-top: 28px;
   width: 380px;
   height: 460px;
   background: linear-gradient(
@@ -22,9 +23,8 @@ export const Logo = styled.img`
 `;
 
 export const Marks = styled.img`
-  position: absolute;
-  top: 28px;
-  left: 36px;
+  display: block;
+  margin: 0 auto;
   width: 308px;
   height: 168px;
 `;
@@ -61,12 +61,11 @@ export const Avatar = styled.img`
 `;
 
 export const Stat = styled.div`
-  padding-top: 284px;
+  margin-top: 88px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  ${'' /* padding-left: 15px; */}
 `;
 
 export const Info = styled.p`
@@ -82,7 +81,7 @@ export const Info = styled.p`
   color: #ebd8ff;
 `;
 
-export const Count = styled.p`
+export const Count = styled.span`
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
@@ -91,4 +90,37 @@ export const Count = styled.p`
   text-transform: uppercase;
 
   color: #ebd8ff;
+`;
+
+export const Btn = styled.button`
+  display: block;
+  width: 196px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  margin: 26px auto 0 auto;
+  text-align: center;
+
+  background: ${({ background }) => background || '#ebd8ff'};
+  box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
+  border-radius: 10.3108px;
+  border: none;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  text-transform: uppercase;
+
+  color: #373737;
+  transition: 250ms;
+
+  &:hover {
+    background: ${({ background }) => (background ? '#ebd8ff' : '#5cd3a8')};
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+  }
 `;

@@ -21,13 +21,3 @@ const App = () => {
 };
 
 export default App;
-
-// const App = () => {
-//   return (
-//     <header>
-//       <h1>This is my app</h1>
-//     </header>
-//   );
-// };
-
-// export default App;
