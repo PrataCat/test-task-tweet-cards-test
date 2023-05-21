@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Btn = styled.button`
+export const Button = styled.button`
   display: block;
   width: 196px;
   padding-top: 14px;
@@ -8,7 +8,7 @@ export const Btn = styled.button`
   margin: 26px auto 0 auto;
   text-align: center;
 
-  background: ${({ background }) => background || '#ebd8ff'};
+  background: var(--title-color);;
   box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
   border-radius: 10.3108px;
   border: none;
@@ -20,15 +20,13 @@ export const Btn = styled.button`
   line-height: 22px;
   text-transform: uppercase;
 
-  color: #373737;
-  transition: 250ms;
+  color: var(--primaru-text-color);
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:hover {
-    background: ${({ background }) => (background ? '#ebd8ff' : '#5cd3a8')};
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
-  }
-
-  &:focus {
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+  :hover,
+  :focus {
+    background: var(--secondary-accent-color);
+    box-shadow: 0 0 0 2px var(--title-color);, 0 3px 8px 0 var(--title-color);
+    outline: 0;
   }
 `;

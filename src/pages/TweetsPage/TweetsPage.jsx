@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Loader from 'components/Loader/Loader';
 import Tweets from 'components/Tweets/Tweets';
 import { useEffect, useState } from 'react';
@@ -5,9 +6,12 @@ import { useLocation } from 'react-router-dom';
 import GetUsers from 'servises/Api/GetUsers';
 import { Container } from './TweetsPage.styled';
 import PutUsers from 'servises/Api/PutUsers';
+import LoadButton from 'components/LoadButton';
 
 const TweetsPage = () => {
   const [users, setUsers] = useState([]);
+  const [page, setPage] = useState(0);
+  const [isDabledBtn, setIsDisabledBtn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMassege, setErrorMassege] = useState(null);
 
@@ -15,25 +19,29 @@ const TweetsPage = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetchUsers();
-    setIsLoading(false);
-  }, []);
-
-  const fetchUsers = async () => {
-    try {
-      const data = await GetUsers();
-
-      if (!data.length) {
-        setErrorMassege('There are no tweets.');
-        setIsLoading(false);
-        return;
-      } else {
-        setUsers(data);
-      }
-    } catch (error) {
-      setErrorMassege('Tweets loading error.');
+    setIsDisabledBtn(false);
+    if (page === 0) {
+      setPage(1);
+      setIsLoading(false);
+      return;
     }
-  };
+    (async () => {
+      try {
+        const data = await GetUsers(page);
+
+        if (!data.length) {
+          setErrorMassege('There are no more tweets.');
+        } else {
+          setUsers(prevState => [...prevState, ...data]);
+          setIsDisabledBtn(true);
+        }
+      } catch (error) {
+        setErrorMassege('Tweets loading error. Please refresh the page.');
+        setIsDisabledBtn(false);
+      }
+    })();
+    setIsLoading(false);
+  }, [page]);
 
   const PutUser = async (id, user) => {
     try {
@@ -49,19 +57,23 @@ const TweetsPage = () => {
     PutUser(id, cangedUser);
   };
 
+  const hendelClick = () => {
+    setPage(prev => prev + 1);
+  };
+
   return (
     <Container>
-      <Tweets
-        tweets={users}
-        pageTitle={'Recommended tweets'}
-        userChange={userChange}
-        location={location}
-      />
-      <button>Losd more</button>
+      <Tweets tweets={users} userChange={userChange} location={location} />
+      {isDabledBtn && <LoadButton onClickBtn={hendelClick} />}
       {isLoading && <Loader />}
       {errorMassege && <h2>{errorMassege}</h2>}
     </Container>
   );
+};
+
+TweetsPage.propTypes = {
+  id: PropTypes.string,
+  user: PropTypes.object,
 };
 
 export default TweetsPage;

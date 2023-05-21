@@ -1,8 +1,13 @@
+import { Container, Title } from './HomePage.styled';
+import { FcSms } from 'react-icons/fc';
+
 const HomePage = () => {
   return (
-    <section>
-      <h1>Welcome to tweets</h1>
-    </section>
+    <Container>
+      <Title to="/tweets">
+        Welcome to tweets <FcSms />
+      </Title>
+    </Container>
   );
 };
 

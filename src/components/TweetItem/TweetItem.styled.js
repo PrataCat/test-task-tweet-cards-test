@@ -5,13 +5,8 @@ export const Tweet = styled.li`
   padding-top: 28px;
   width: 380px;
   height: 460px;
-  background: linear-gradient(
-    114.99deg,
-    #471ca9 -0.99%,
-    #5736a3 54.28%,
-    #4b2a99 78.99%
-  );
-  box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
+  background: var(--bg-color);
+  box-shadow: var(--card-box-shadow);
   border-radius: 20px;
 `;
 
@@ -36,9 +31,8 @@ export const Line = styled.div`
   transform: translate(0%, -50%);
   width: 100%;
   height: 8px;
-  background-color: #ebd8ff;
-  box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06),
-    inset 0px -1.71846px 3.43693px #ae7be3, inset 0px 3.43693px 2.5777px #fbf8ff;
+  background-color: var(--secondary-accent-color);
+  box-shadow: var(--line-box-shadow);
 `;
 
 export const Сircle = styled.img`
@@ -57,7 +51,7 @@ export const Avatar = styled.img`
   transform: translate(-50%, -50%);
   width: 64px;
   border-radius: 50%;
-  background-color: #5736a3;
+  background-color: var(--img-bg-color);
 `;
 
 export const Stat = styled.div`
@@ -78,7 +72,7 @@ export const Info = styled.p`
   line-height: 24px;
   text-transform: uppercase;
 
-  color: #ebd8ff;
+  color: var(--secondary-accent-color);
 `;
 
 export const Count = styled.span`
@@ -89,7 +83,7 @@ export const Count = styled.span`
   line-height: 24px;
   text-transform: uppercase;
 
-  color: #ebd8ff;
+  color: var(--secondary-accent-color);
 `;
 
 export const Btn = styled.button`
@@ -100,8 +94,9 @@ export const Btn = styled.button`
   margin: 26px auto 0 auto;
   text-align: center;
 
-  background: ${({ background }) => background || '#ebd8ff'};
-  box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
+  background: ${({ background }) =>
+    background || 'var(--secondary-accent-color)'};
+  box-shadow: var(--btn-box-shadow);
   border-radius: 10.3108px;
   border: none;
 
@@ -112,15 +107,20 @@ export const Btn = styled.button`
   line-height: 22px;
   text-transform: uppercase;
 
-  color: #373737;
-  transition: 250ms;
+  color: var(--primaru-text-color);
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:hover {
-    background: ${({ background }) => (background ? '#ebd8ff' : '#5cd3a8')};
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+  :hover {
+    background: ${({ background }) =>
+      background
+        ? 'var(--secondary-accent-color)'
+        : 'var(--primary-accent-color);'};
+    box-shadow: var(--primary-box-shadow);
+    outline: 0;
   }
 
-  &:focus {
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+  :focus {
+    box-shadow: var(--primary-box-shadow);
+    outline: 0;
   }
 `;

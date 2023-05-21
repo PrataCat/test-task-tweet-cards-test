@@ -7,10 +7,11 @@ export const Container = styled.div`
 
 export const Header = styled.nav`
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 15px;
-  height: 60px;
-  padding-left: 15px;
+  gap: 30px;
+  height: 40px;
+  padding: 8px;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `;
@@ -21,6 +22,6 @@ export const StyledLink = styled(NavLink)`
   font-size: 24px;
 
   &.active {
-    color: rgb(227, 17, 108);
+    color: var(--title-color);
   }
 `;

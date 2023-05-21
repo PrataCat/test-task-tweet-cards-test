@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Tweet,
   Logo,
@@ -71,10 +72,16 @@ const TweetItem = ({ user, userChange }) => {
       <Сircle src={ellipse} alt="avatar" />
       <Stat>
         <Info>
-          <Count>{tweets}</Count> tweets
+          <Count>
+            {tweets.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          </Count>{' '}
+          tweets
         </Info>
         <Info>
-          <Count>{followers}</Count> followers
+          <Count>
+            {followers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          </Count>{' '}
+          followers
         </Info>
       </Stat>
       <Btn onClick={hendleClick} background={color}>
@@ -82,6 +89,18 @@ const TweetItem = ({ user, userChange }) => {
       </Btn>
     </Tweet>
   );
+};
+
+TweetItem.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    avatar: PropTypes.string,
+    tweets: PropTypes.number,
+    followers: PropTypes.number,
+    color: PropTypes.string,
+    status: PropTypes.string,
+  }).isRequired,
+  userChange: PropTypes.func.isRequired,
 };
 
 export default TweetItem;

@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import TweetItem from 'components/TweetItem/TweetItem';
-import { TweetList } from './Tweets.styled';
+import { BackBtn, TweetList } from './Tweets.styled';
 
-const Tweets = ({ tweets, pageTitle, userChange }) => {
+const Tweets = ({ tweets, userChange }) => {
   return (
     <>
-      <h2>{pageTitle}</h2>
+      <BackBtn to="/">Back</BackBtn>
       <TweetList>
         {tweets.map(tweet => {
           const { id } = tweet;
@@ -13,6 +14,11 @@ const Tweets = ({ tweets, pageTitle, userChange }) => {
       </TweetList>
     </>
   );
+};
+
+Tweets.propTypes = {
+  tweets: PropTypes.array.isRequired,
+  userChange: PropTypes.func.isRequired,
 };
 
 export default Tweets;
